@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BurgerQ.Models.Entity.product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Create","products")'">Yeni Məhsul</button>
+</p>
+
+<table class="table">
+    <tr style="background-color:aquamarine">
+        <th>
+            Adı
+        </th>
+        <th>
+            Kategoriya
+        </th>
+        <th>
+            Açıqlama
+        </th>
+        <th>
+            ŞəkilUrl
+        </th>
+        <th>
+            Qiyməti
+        </th>
+        <th>
+            Aktivliyi
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imageurl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isactive)
+        </td>
+        <td>
+            @Html.ActionLink("Düzəlt", "Edit", new { id=item.ID}, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Sil", "Delete", new { id=item.ID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

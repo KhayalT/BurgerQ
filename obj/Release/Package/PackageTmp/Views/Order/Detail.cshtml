@@ -1,0 +1,43 @@
+﻿@model BurgerQ.Models.Entity.orders
+@{
+    ViewBag.Title = "Detail";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body style="background-image:url(/burgerq/assets/images/banner.jpg)">
+<h2 style="color:orangered">@Model.ID nömrəli siparişiniz : @Model.Status.Name</h2>
+<table >
+
+    <tr >
+        <th><h3>Cəm : @Model.TotalPrice.ToString() ₼</h3></th>
+    </tr>
+</table>
+
+
+
+    @{
+        foreach (var item in Model.orderproduct)
+        {
+            <ul>
+            <li><h3>Məhsul: @item.product.Name</h3></li>
+            <li><h3>Ədəd : @item.quantity ədəd</h3></li>
+            </ul>
+        }
+
+    }
+
+
+    <br />
+
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index","Home")'">
+    <span class="glyphicon glyphicon-share-alt"></span>Ana səhifəyə qayıt
+</button>
+</body>
+</html>

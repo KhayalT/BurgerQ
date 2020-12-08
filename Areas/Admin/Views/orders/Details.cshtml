@@ -1,0 +1,58 @@
+﻿@model BurgerQ.Models.Entity.orders
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>orders</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.User.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.User.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.useradress.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.useradress.Title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Status.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Status.Name)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿@using BurgerQ.Models.Entity
+@model List<product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var islogin = (bool)ViewBag.IsLogin;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    @section script{
+        <script type="text/javascript">
+            $(function () {
+                $("#andModal").dialog({
+                    autoOpen: false,
+                    show: {
+                        effect: "blind",
+                        duration: 500
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 500
+                    }
+                });
+
+                $(".addbasket").on("click", function () {
+                    var pid=$(this).attr("data-pid")
+                    $.post("/basket/AddProduct?productID=" + pid + "&quantity=1", function (data) {
+                        $("#andModal").dialog("open");
+                    })
+                    
+                    return false;
+
+                });
+            });
+        </script>
+
+    }
+    </head>
+<body>
+    <section class="w3l-about-breadcrumb">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-3">
+                <h2 class="title"> Burgerlərimiz</h2>
+            </div>
+        </div>
+    </section>
+    <div class="w3l-menublock py-5">
+        <!-- menu block -->
+        <div id="w3l-menublock" class="text-center py-lg-4 py-md-3">
+            <div class="container">
+                <input id="tab2" type="radio" name="tabs" >
+                <label class="tabtle" style="background-color:orange"><a style="color:white">Burgerlər</a></label>
+
+                <input id="tab2" type="radio" name="tabs" style="background-color:orange">
+                <label class="tabtle" style="background-color:white"><a href="/Menu/Apper/" style="color:#808080">Qəlyanaltılar</a></label>
+
+                <input id="tab3" type="radio" name="tabs">
+                <label class="tabtle" style="background-color:white"><a href="/Menu/Drinks/" style="color:#808080">İçkilər</a></label>
+
+                <section id="content1" class=" text-left">
+                    <!-- <h3 class="title-small text-center">Coffee - <span>We make the delicious coffee</span></h3> -->
+                    <div class="row menu-body">
+                        <!-- Section starts: Appetizers -->
+                        <div class="col-lg-6 menu-section pr-lg-5">
+                            <!-- Item starts -->
+                            @foreach (var m in Model)
+                            {
+                                <div class="menu-item">
+                                    <div>
+                                        <div class="row border-dot no-gutters">
+                                            <div class="col-8 menu-item-name">
+                                                <h6>@m.Name</h6>
+                                            </div>
+                                            <div class="col-4 menu-item-price text-right">
+                                                <h6>@m.price</h6>
+                                            </div>
+                                        </div>
+                                        <div class="menu-item-description">
+                                            <p>@m.description</p>
+                                        </div>
+                                        @{
+                                            if (islogin)
+                                            {
+                                                <div>
+                                                    <a href="#" data-pid="@m.ID" class="addbasket"><i class="fa fa-shopping-basket"></i> Səbətə at</a>
+                                                </div>
+                                            }
+
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                            <div id="andModal" title="Səbət">
+                                Səbətə əlavə edilmişdir.
+                            </div>
+                            <!-- Item ends -->
+
+                        </div>
+                        <!-- Section ends: Appetizers -->
+                        <!-- Section starts: Appetizers -->
+                        <div class="col-lg-6 menu-section pl-lg-5 text-center">
+                            <img src="~/burgerq/assets/images/burger1.png" alt="" class="radius-image img-fluid">
+                        </div>
+                        <!-- Section ends: Appetizers -->
+
+                </section>
+            </div>
+        </div>
+        <!-- menu block -->
+    </div>
+</body>
+</html>
+ 

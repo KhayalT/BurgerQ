@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BurgerQ.Models.Entity.orders>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table class="table">
+        <tr style="background-color:aquamarine">
+            <th>
+                Cəm Qiymət
+            </th>
+            <th>
+                Alıcı
+            </th>
+            <th>
+                Telefon Nömrəsi
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Şəhər
+            </th>
+            <th>
+                Ünvan
+            </th>
+            <th>
+                Vəziyyət
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice) ₼
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+                @Html.DisplayFor(modelItem => item.User.LasName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.telephone)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.useradress.city)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.useradress.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Düzəliş et", "Edit", new { id=item.ID }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("Sil", "Delete", new { id=item.ID }, new { @class="btn btn-danger"})
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

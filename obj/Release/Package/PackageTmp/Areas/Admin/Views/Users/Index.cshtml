@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BurgerQ.Models.Entity.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+    <button class="btn btn-info" onclick="location.href='@Url.Action("Create","Users")'">Yeni İstifadəçi</button>
+
+</p>
+<br />
+<table class="table">
+    <tr style="background-color:aquamarine">
+        <th>
+            AD
+        </th>
+        <th>
+            Soyad
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Telefon Nömrəsi
+        </th>
+        <th>
+            Parol
+        </th>
+        <th>
+            Aktivliyi
+        </th>
+        <th>
+            Adminliyi
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LasName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isactive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isadmin)
+        </td>
+        <td>
+            @Html.ActionLink("Düzəlt", "Edit", new { id=item.ID }, new { @class="btn btn-primary"}) 
+            @Html.ActionLink("Sil", "Delete", new { id=item.ID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

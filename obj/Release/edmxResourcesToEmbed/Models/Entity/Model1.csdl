@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="burgerqModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="basket">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="product" Relationship="Self.FK_basket_product" FromRole="basket" ToRole="product" />
+    <NavigationProperty Name="User" Relationship="Self.FK_basket_User" FromRole="basket" ToRole="User" />
+  </EntityType>
+  <EntityType Name="orderproduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="orders" Relationship="burgerqModel.FK_orderproduct_orders" FromRole="orderproduct" ToRole="orders" />
+    <NavigationProperty Name="product" Relationship="burgerqModel.FK_orderproduct_product" FromRole="orderproduct" ToRole="product" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="UserAdressId" Type="Int32" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="User" Relationship="Self.FK_orders_User" FromRole="orders" ToRole="User" />
+    <NavigationProperty Name="useradress" Relationship="Self.FK_orders_useradress" FromRole="orders" ToRole="useradress" />
+    <Property Name="StatusID" Type="Int32" />
+    <NavigationProperty Name="Status" Relationship="burgerqModel.FK_orders_Status" FromRole="orders" ToRole="Status" />
+    <NavigationProperty Name="orderproduct" Relationship="burgerqModel.FK_orderproduct_orders" FromRole="orders" ToRole="orderproduct" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <Property Name="category" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="imageurl" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="isactive" Type="Boolean" />
+    <NavigationProperty Name="basket" Relationship="Self.FK_basket_product" FromRole="product" ToRole="basket" />
+    <NavigationProperty Name="orderproduct" Relationship="burgerqModel.FK_orderproduct_product" FromRole="product" ToRole="orderproduct" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LasName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telephone" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="isactive" Type="Boolean" />
+    <NavigationProperty Name="basket" Relationship="Self.FK_basket_User" FromRole="User" ToRole="basket" />
+    <NavigationProperty Name="orders" Relationship="Self.FK_orders_User" FromRole="User" ToRole="orders" />
+    <NavigationProperty Name="useradress" Relationship="Self.FK_useradress_User" FromRole="User" ToRole="useradress" />
+    <Property Name="isadmin" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="useradress">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Adress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="isactive" Type="Boolean" />
+    <NavigationProperty Name="orders" Relationship="Self.FK_orders_useradress" FromRole="useradress" ToRole="orders" />
+    <NavigationProperty Name="User" Relationship="Self.FK_useradress_User" FromRole="useradress" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_basket_product">
+    <End Role="product" Type="Self.product" Multiplicity="0..1" />
+    <End Role="basket" Type="Self.basket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="basket">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_basket_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="basket" Type="Self.basket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="basket">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orders_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orders_useradress">
+    <End Role="useradress" Type="Self.useradress" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="useradress">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="UserAdressId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_useradress_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="useradress" Type="Self.useradress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="useradress">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="burgerqEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="basket" EntityType="Self.basket" />
+    <EntitySet Name="orderproduct" EntityType="Self.orderproduct" />
+    <EntitySet Name="orders" EntityType="Self.orders" />
+    <EntitySet Name="product" EntityType="Self.product" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="useradress" EntityType="Self.useradress" />
+    <AssociationSet Name="FK_basket_product" Association="Self.FK_basket_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="basket" EntitySet="basket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_basket_User" Association="Self.FK_basket_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="basket" EntitySet="basket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_User" Association="Self.FK_orders_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_useradress" Association="Self.FK_orders_useradress">
+      <End Role="useradress" EntitySet="useradress" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_useradress_User" Association="Self.FK_useradress_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="useradress" EntitySet="useradress" />
+    </AssociationSet>
+    <EntitySet Name="Status" EntityType="burgerqModel.Status" />
+    <AssociationSet Name="FK_orders_Status" Association="burgerqModel.FK_orders_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(burgerqModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(burgerqModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK_orderproduct_orders" Association="burgerqModel.FK_orderproduct_orders">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="orderproduct" EntitySet="orderproduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderproduct_product" Association="burgerqModel.FK_orderproduct_product">
+      <End Role="product" EntitySet="product" />
+      <End Role="orderproduct" EntitySet="orderproduct" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="orders" Relationship="burgerqModel.FK_orders_Status" FromRole="Status" ToRole="orders" />
+  </EntityType>
+  <Association Name="FK_orders_Status">
+    <End Type="burgerqModel.Status" Role="Status" Multiplicity="0..1" />
+    <End Type="burgerqModel.orders" Role="orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_orderproduct_orders">
+    <End Type="burgerqModel.orders" Role="orders" Multiplicity="0..1" />
+    <End Type="burgerqModel.orderproduct" Role="orderproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="orderproduct">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderproduct_product">
+    <End Type="burgerqModel.product" Role="product" Multiplicity="0..1" />
+    <End Type="burgerqModel.orderproduct" Role="orderproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="orderproduct">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

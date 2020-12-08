@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BurgerQ.Models.Entity.orders>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Burger Queen</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/burgerq/assets/css/style-starter.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <br />
+    <table class="table table-bordered">
+        <tr style="background-color:aqua">
+            <th>
+                Cəm Məbləğ
+            </th>
+            <th>
+                Alıcı
+            </th>
+            <th>
+                Ünvan Adı
+            </th>
+            <th>
+                Vəziyyəti
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="background-color:azure">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.useradress.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Ətraflı", "Detail", new { id = item.ID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index","Menu")'">
+        <span class="glyphicon glyphicon-share-alt"></span>Alışverişə davam et
+    </button>
+</body>
+</html>

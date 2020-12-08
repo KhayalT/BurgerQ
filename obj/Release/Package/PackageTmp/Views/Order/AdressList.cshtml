@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BurgerQ.Models.Entity.useradress>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdressList</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body style="background-image:url(/web/images/b1.jpg)">
+    <h2 style="color:white">Ünvanların</h2>
+    <table class="table table-bordered">
+        <tr style="color:yellow">
+            <th>
+                Başlıq
+            </th>
+            <th>
+                Şəhər
+            </th>
+            <th>
+                Ünvan
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="color:white">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.city)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adress)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Seç", "CreateOrder", new { id = item.ID }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Sil", "DeleteAdress", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br>
+  <div style="margin-left:600px">
+    <button class="btn btn-info"onclick="location.href='@Url.Action("CreateAdress","Order")'">Yeni Ünvan</button>
+       </div> 
+</body>
+</html>

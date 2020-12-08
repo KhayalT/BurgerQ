@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--A Design by W3layouts
+   Author: W3layout
+   Author URL: http://w3layouts.com
+   License: Creative Commons Attribution 3.0 Unported
+   License URL: http://creativecommons.org/licenses/by/3.0/
+   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Burger Queen Admin Login </title>
+    <!-- Meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Gaze Sign up & login Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
+    <script>
+         addEventListener("load", function () { setTimeout(hideURLbar, 0); }, false); function hideURLbar() { window.scrollTo(0, 1); }
+    </script>
+    <!-- Meta tags -->
+    <!--stylesheets-->
+    <link href="~/web/css/style.css" rel='stylesheet' type='text/css' media="all">
+    <!--//style sheet end here-->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+</head>
+<body>
+    <div class="mid-class">
+        <div class="art-right-w3ls">
+            <h2>Sadəcə Adminlər girə bilər!</h2>
+            @using (Html.BeginForm("Index", "AdminLogin", FormMethod.Post))
+            {
+
+        <div class="main">
+            <div class="form-left-to-w3l">
+                <input type="text" name="Name" title="Lütfən boş buraxmayın" placeholder="Adınız:" required="">
+            </div>
+            <div class="form-left-to-w3l">
+                <input type="text" name="Email" title="Lütfən boş buraxmayın" placeholder="Emailiniz:" required="">
+            </div>
+            <div class="form-left-to-w3l ">
+                <input type="password" title="Lütfən boş buraxmayın" name="password" placeholder="Parolunuz:" required="">
+                <div class="clear"></div>
+            </div>
+            <div class="form-left-to-w3l">
+             <input type="text" pattern="\d*" title="Lütfən keçərli bir nömrə yazın" name="telephone" placeholder="Telefon Nömrəniz:0123456789" required="">
+            </div>
+        </div>
+  
+                <div class="clear"></div>
+                <div class="btnn">
+                    <button type="submit">Giriş</button>
+                </div>
+            }
+   
+          
+        </div>
+    </div>
+    <footer class="bottem-wthree-footer">
+        <p>
+            © 2020 Admin Login Form.
+            
+        </p>
+    </footer>
+</body>
+</html>

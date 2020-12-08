@@ -1,0 +1,324 @@
+﻿<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Burger Queen</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/burgerq/assets/css/style-starter.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0">
+                <h1>
+                    <a class="navbar-brand" href="/Home/Index/">
+                        <img src="~/burgerq/assets/images/burger.png" alt="burger logo" width="35px" /> Burger Queen
+                    </a>
+                </h1>
+                <!-- if logo is image enable this
+                <a class="navbar-brand" href="#index.html">
+                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Index/">Ana səhifə <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/Menu/Index/"><i class="fa fa-paste"></i> Menyu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Əlaqə</a>
+                        </li>
+                        @{ if (Session["LoginUser"] == null)
+                            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/Login/"><i class="fa fa-sign-in"></i> Giriş</a>
+                </li>
+ }
+            else
+            {
+<li class="nav-item">
+    <a class="nav-link" href="contact.html"><i class="fa fa-user"></i> Profilim</a>
+</li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/basket/Index/"><i class="fa fa-shopping-basket"></i> Səbətim</a>
+                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Order/Index/"><i class="fa fa-first-order"></i> Sifarişlərim</a>
+                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Home/Logout/"><i class="fa fa-sign-out"></i> Çıxış</a>
+                                                </li>
+ } }
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    @RenderBody()
+
+    <!-- footer -->
+    <footer class="py-5">
+        <div class="container py-xl-4">
+            <div class="row footer-top">
+                <div class="col-lg-4 footer-grid_section_1its footer-text">
+                    <!-- logo -->
+                    <h2>
+                        <a class="logo text-wh" href="index.html">
+                            <img src="~/burgerq/assets/images/burger.png" alt="burger logo" width="35px" /> Burger Queen
+                        </a>
+                    </h2>
+                    <!-- //logo -->
+                    <p class="mt-lg-4 mt-3 mb-4 pb-lg-2">
+                        Qonaqlarımızın və işçilərimizin təhlükəsizliyinə həsr olunmuşuq və təhlükəsizlik tədbirlərini yeniləmişik. Retina və Duyarlı yanaşma ilə sadə, yaradıcı, müasir və çevik dizayn standartlarına inanırıq. Bu şablonun təqdim etdiyi heyrətləndirici xüsusiyyətləri nəzərdən keçirin.
+                    </p>
+                    <!-- social icons -->
+                    <ul class="top-right-info">
+                        <li>
+                            <p>Bizi izləyin:</p>
+                        </li>
+                        <li class="facebook-w3">
+                            <a href="https://www.facebook.com/profile.php?id=100040740383526">
+                                <span class="fa fa-facebook-f"></span>
+                            </a>
+                        </li>
+                        <li class="twitter-w3">
+                            <a href="#twitter">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li class="google-w3">
+                            <a href="#google">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                        </li>
+                        <li class="dribble-w3">
+                            <a href="#dribble">
+                                <span class="fa fa-dribbble"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- //social icons -->
+                </div>
+                <div class="col-lg-4 col-sm-6 footer-grid_section_1its mt-lg-0 mt-5">
+                    <div class="footer-title">
+                        <h3>Bizimlə əlaqə saxlayın:</h3>
+                    </div>
+                    <div class="footer-text mt-4">
+                        <p>
+                            <strong>Ünvan :</strong> Burger Queen, Bakı Şəhər,Babək Prospekti.
+                        </p>
+                        <p class="my-2"><strong>Phone :</strong> <a href="tel:+994 077 617 95 75">+994 077 617 95 75</a></p>
+                        <p><strong>Email :</strong> <a href="mailto:teyyubovxeyal04gmail.com">teyyubovxeyal04gmail.com</a></p>
+                    </div>
+                    <div class="footer-title mt-4 pt-md-2">
+                        <h3>Ödəniş Metodları</h3>
+                    </div>
+                    <ul class="list-unstyled payment-links mt-4">
+                        <li>
+                            <a href="#payment"><img src="~/burgerq/assets/images/pay2.png" class="radius-image" width="55px" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="#payment"><img src="~/burgerq/assets/images/pay5.png" class="radius-image" width="55px" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="#payment"><img src="~/burgerq/assets/images/pay1.png" class="radius-image" width="55px" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="#payment"><img src="~/burgerq/assets/images/pay4.png" class="radius-image" width="55px" alt=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    <!-- copyright -->
+    <div class="cpy-right text-center py-4">
+        <p>© 2020 "Burger Queen". All rights reserved | Design by "Khayal Teyyubov".</p>
+    </div>
+    <!-- //copyright -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }</script>
+    <!-- /move top -->
+
+    <script src="~/burgerq/assets/js/jquery-3.3.1.min.js"></script> <!-- Common jquery plugin -->
+
+    <script src="~/burgerq/assets/js/theme-change.js"></script><!-- theme switch js (light and dark)-->
+
+    <script src="~/burgerq/assets/js/owl.carousel.js"></script><!-- owl carousel -->
+    <!-- script for tesimonials carousel slider -->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo1").owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    1000: {
+                        items: 1,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            })
+        })</script>
+    <!-- //script for tesimonials carousel slider -->
+
+    <script src="~/burgerq/assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });</script>
+
+    <script src="~/burgerq/assets/js/counter.js"></script>
+
+    <!-- gallery popup js -->
+    <script src="~/burgerq/assets/js/smartphoto.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sm = new SmartPhoto(".js-img-viwer", {
+                showAnimation: false
+            });
+            // sm.destroy();
+        });</script>
+    <!-- //gallery popup js -->
+    <!--/MENU-JS-->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });</script>
+    <!--//MENU-JS-->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });</script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="~/burgerq/assets/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @RenderSection("script", false)
+    <!-- //bootstrap-->
+</body>
+
+</html>
